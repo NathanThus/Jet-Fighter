@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://deop3fy5w47so"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerMovement.cs" id="1_nn78m"]
+[ext_resource type="Texture2D" uid="uid://c3dqm5tmkwo1c" path="res://icon.svg" id="2_tpvd7"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_nn78m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tpvd7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
