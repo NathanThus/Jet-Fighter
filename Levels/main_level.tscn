@@ -7,3 +7,5 @@
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_fu8u2")]
 position = Vector2(620, 319)
 scale = Vector2(0.3, 0.3)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
