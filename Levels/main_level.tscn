@@ -5,4 +5,5 @@
 [node name="Main Level" type="Node2D"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_fu8u2")]
-position = Vector2(623, 58)
+position = Vector2(620, 319)
+scale = Vector2(0.3, 0.3)
