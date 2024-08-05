@@ -1,11 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://deop3fy5w47so"]
 
-[ext_resource type="Script" path="res://Scripts/PlayerMovement.cs" id="1_nn78m"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerMovement.cs" id="1_nn78m"]
 [ext_resource type="Texture2D" uid="uid://c3dqm5tmkwo1c" path="res://icon.svg" id="2_tpvd7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wyahd"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("Rigidbody")]
+collision_layer = 2
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_nn78m")
 Rigidbody = NodePath("RigidBody2D")
@@ -17,6 +19,7 @@ texture = ExtResource("2_tpvd7")
 shape = SubResource("CircleShape2D_wyahd")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_layer = 3
 gravity_scale = 3.0
 constant_force = Vector2(0, -1)
 
