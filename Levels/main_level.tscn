@@ -35,7 +35,6 @@ position = Vector2(620, 319)
 scale = Vector2(0.3, 0.3)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(-63.333, 0)
 limit_top = -500
 limit_bottom = 1040
 
@@ -104,7 +103,6 @@ texture = SubResource("GradientTexture1D_k6ydr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Ground/StaticBody2D"]
 position = Vector2(-0.359801, -0.380284)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_38sgb")
 
 [node name="Sky Ceiling" type="Sprite2D" parent="Borders"]
