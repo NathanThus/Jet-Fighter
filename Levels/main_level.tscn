@@ -1,11 +1,119 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2sgo1aipijiq"]
+[gd_scene load_steps=13 format=3 uid="uid://b2sgo1aipijiq"]
 
 [ext_resource type="PackedScene" uid="uid://deop3fy5w47so" path="res://Scenes/Player.tscn" id="1_fu8u2"]
+[ext_resource type="Texture2D" uid="uid://cyhc88pf2e0xe" path="res://Art/Clouds/Cloud1.png" id="2_6o1xv"]
+[ext_resource type="Texture2D" uid="uid://dnr56otvagjab" path="res://Art/Clouds/Cloud2.png" id="3_5y4qm"]
+[ext_resource type="Texture2D" uid="uid://c064odysnxjo8" path="res://Art/Clouds/Cloud3.png" id="4_tr05s"]
+[ext_resource type="Script" path="res://Scripts/Borders.cs" id="5_m5gve"]
+
+[sub_resource type="Gradient" id="Gradient_362h1"]
+colors = PackedColorArray(0.271565, 0.784693, 1, 1, 0.270588, 0.784314, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lox7j"]
+gradient = SubResource("Gradient_362h1")
+width = 1400
+
+[sub_resource type="Gradient" id="Gradient_vvea7"]
+colors = PackedColorArray(0, 0.554526, 9.62615e-07, 1, 0, 0.552941, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_k6ydr"]
+gradient = SubResource("Gradient_vvea7")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_38sgb"]
+size = Vector2(257.279, 0.237446)
+
+[sub_resource type="Gradient" id="Gradient_o5vv5"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ii0yu"]
+gradient = SubResource("Gradient_o5vv5")
 
 [node name="Main Level" type="Node2D"]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_fu8u2")]
+[node name="Player" parent="." instance=ExtResource("1_fu8u2")]
 position = Vector2(620, 319)
 scale = Vector2(0.3, 0.3)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-63.333, 0)
+limit_top = -500
+limit_bottom = 1040
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
+
+[node name="Sky" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
+motion_mirroring = Vector2(1200, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/ParallaxBackground/Sky"]
+scale = Vector2(1, 1200)
+texture = SubResource("GradientTexture1D_lox7j")
+centered = false
+
+[node name="Cloud 1" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
+motion_mirroring = Vector2(1200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/ParallaxBackground/Cloud 1"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(728, 229)
+scale = Vector2(6, 5.94)
+texture = ExtResource("2_6o1xv")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="Cloud 2" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
+motion_mirroring = Vector2(1200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/ParallaxBackground/Cloud 2"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(81, 119)
+scale = Vector2(6, 5.94)
+texture = ExtResource("3_5y4qm")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="Cloud 3" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
+motion_mirroring = Vector2(1200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/ParallaxBackground/Cloud 3"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(187, 352)
+scale = Vector2(6, 5.94)
+texture = ExtResource("4_tr05s")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="Borders" type="Node2D" parent="." node_paths=PackedStringArray("Player")]
+script = ExtResource("5_m5gve")
+Player = NodePath("../Player")
+
+[node name="Ground" type="Sprite2D" parent="Borders"]
+z_index = 1
+position = Vector2(0, 998)
+scale = Vector2(20, 120)
+texture = SubResource("GradientTexture1D_k6ydr")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Borders/Ground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Ground/StaticBody2D"]
+position = Vector2(-0.359801, -0.380284)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_38sgb")
+
+[node name="Sky Ceiling" type="Sprite2D" parent="Borders"]
+position = Vector2(0, -440)
+scale = Vector2(20, 120)
+texture = SubResource("GradientTexture1D_ii0yu")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Borders/Sky Ceiling"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Sky Ceiling/StaticBody2D"]
+position = Vector2(-0.730909, 0.380991)
+shape = SubResource("RectangleShape2D_38sgb")
