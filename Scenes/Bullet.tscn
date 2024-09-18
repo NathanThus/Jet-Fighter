@@ -5,11 +5,12 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1d32p"]
 
-[node name="Bullet" type="RigidBody2D" node_paths=PackedStringArray("timer")]
+[node name="Bullet" type="RigidBody2D" node_paths=PackedStringArray("timer") groups=["PlayerBullet"]]
 collision_layer = 8
-collision_mask = 5
+collision_mask = 4
 mass = 0.01
 gravity_scale = 0.0
+contact_monitor = true
 script = ExtResource("1_e8v6d")
 timer = NodePath("Timer")
 
@@ -24,3 +25,5 @@ texture = ExtResource("1_k5dh6")
 wait_time = 3.0
 one_shot = true
 autostart = true
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dw5svxg2lrqk7"]
+
+[ext_resource type="Texture2D" uid="uid://8l7h6cou68lc" path="res://Art/Enemy/Target.png" id="1_jws8g"]
+[ext_resource type="Script" path="res://Scripts/Health/TargetHealth.cs" id="2_8oakr"]
+[ext_resource type="PackedScene" uid="uid://cetkhcjg5gtcd" path="res://Scenes/Target_Child.tscn" id="2_bahka"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7101d"]
+size = Vector2(128, 128)
+
+[node name="Target" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 10
+gravity_scale = 0.0
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("2_8oakr")
+MaxHealth = 10
+ChildScene = ExtResource("2_bahka")
+ChildCount = 4
+SpawnOffset = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jws8g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7101d")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
