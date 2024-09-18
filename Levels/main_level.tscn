@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://b2sgo1aipijiq"]
+[gd_scene load_steps=7 format=3 uid="uid://b2sgo1aipijiq"]
 
 [ext_resource type="PackedScene" uid="uid://deop3fy5w47so" path="res://Scenes/Player.tscn" id="1_fu8u2"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerGun.cs" id="2_es331"]
-[ext_resource type="Script" path="res://Scripts/Borders.cs" id="5_m5gve"]
 [ext_resource type="PackedScene" uid="uid://cyx0ojqo2ic3y" path="res://Scenes/Bullet.tscn" id="7_p36au"]
 [ext_resource type="PackedScene" uid="uid://dw5svxg2lrqk7" path="res://Scenes/Target.tscn" id="8_frxmd"]
 
@@ -11,21 +10,6 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1vw8w"]
 gradient = SubResource("Gradient_20s35")
-
-[sub_resource type="Gradient" id="Gradient_vvea7"]
-colors = PackedColorArray(0, 0.554526, 9.62615e-07, 1, 0, 0.552941, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_k6ydr"]
-gradient = SubResource("Gradient_vvea7")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_38sgb"]
-size = Vector2(257.279, 0.237446)
-
-[sub_resource type="Gradient" id="Gradient_o5vv5"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ii0yu"]
-gradient = SubResource("Gradient_o5vv5")
 
 [node name="Main Level" type="Node2D"]
 
@@ -55,33 +39,6 @@ motion_mirroring = Vector2(1200, 648)
 scale = Vector2(4.79297, 1200)
 texture = SubResource("GradientTexture1D_1vw8w")
 centered = false
-
-[node name="Borders" type="Node2D" parent="." node_paths=PackedStringArray("Player")]
-script = ExtResource("5_m5gve")
-Player = NodePath("../Player")
-
-[node name="Ground" type="Sprite2D" parent="Borders"]
-z_index = 1
-position = Vector2(0, 998)
-scale = Vector2(20, 120)
-texture = SubResource("GradientTexture1D_k6ydr")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Borders/Ground"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Ground/StaticBody2D"]
-position = Vector2(-0.359801, -0.380284)
-shape = SubResource("RectangleShape2D_38sgb")
-
-[node name="Sky Ceiling" type="Sprite2D" parent="Borders"]
-position = Vector2(0, -440)
-scale = Vector2(20, 120)
-texture = SubResource("GradientTexture1D_ii0yu")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Borders/Sky Ceiling"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Sky Ceiling/StaticBody2D"]
-position = Vector2(-0.730909, 0.380991)
-shape = SubResource("RectangleShape2D_38sgb")
 
 [node name="Target" parent="." instance=ExtResource("8_frxmd")]
 position = Vector2(977, 316)
