@@ -9,5 +9,12 @@ public partial class BulletTimer : RigidBody2D
 	{
 		timer.Timeout += () => QueueFree();
 	}
-
+	
+	private void OnBodyEntered(Node body)
+	{
+		QueueFree();
+	}
 }
+
+
+
